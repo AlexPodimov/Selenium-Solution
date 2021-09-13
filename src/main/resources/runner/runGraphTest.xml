@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite guice-stage="DEVELOPMENT" name="Run Scenario 1">
+	
+	<!-- <listeners>
+		My custom listeners has been removed as it add extra effort and complexity, I have used it for the
+		Extent Reports integration
+	</listeners>	 -->
+	
+	
+	<test verbose="2" name="Run Scenario 1">
+		<classes>
+			<class name="testcases.TestGraph"/>
+		</classes>
+	</test> <!-- Test -->
+	
+</suite> <!-- Suite -->
