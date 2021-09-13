@@ -9,9 +9,7 @@ import utilities.PageUtilities;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -43,7 +41,6 @@ public class Scenario1 extends PageUtilities {
 		initBrowser();
 		
 	}
-
 	
 	@Test
 	public void test01() { 
@@ -55,21 +52,15 @@ public class Scenario1 extends PageUtilities {
 		int randLowValue = 1;
 		int randHighValue = driver.returnElements(WebElements.totalNumberOfProducts).size();
 		int rndValueForElementToClick = rndNumber.nextInt(randHighValue - randLowValue) + randLowValue;
-
-	
-		int totalValues = driver.returnElements(WebElements.totalNumberOfProducts).size();
 		
 		driver.returnElement(WebElements.dynamicProductOnTheFrontPage(String.valueOf(rndValueForElementToClick))).click();
-		
 
 		String productPrice = driver.returnElement(WebElements.selectedProductPrice).getText();
 		
 		driver.returnElement(WebElements.addToCartBtn).click();   
-		
-
 		driver.waitForElemetVisability(webelements.WebElements.popUpCart);
 		
-
+		//check the prices in cart and before it are equal
 		Assert.assertEquals(productPrice, driver.returnElement(WebElements.totalProductsPrice).getText());
 	}
 	
@@ -146,6 +137,8 @@ public class Scenario1 extends PageUtilities {
 
 		//try to scroll into view (on the button, just to spend more time on the page for URL to be updated)
 		driver.scrollIntoView(WebElements.registerBtn);
+		
+		//overall, it needs more work to hande this kind of situation, will require waits customization 
 		
 		Assert.assertEquals(urlToTest, WebDriverUtility.getDriver().getCurrentUrl());
 
